@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
-      <body className="bg-noir text-white font-montserrat antialiased">
+      <body suppressHydrationWarning className="bg-noir text-white font-montserrat antialiased">
         <LangProvider>
           <AppShell>{children}</AppShell>
         </LangProvider>

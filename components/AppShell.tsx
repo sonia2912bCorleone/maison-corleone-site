@@ -1,12 +1,14 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { ReactNode, useState, useEffect } from 'react'
 import { useLang } from './LangProvider'
 import Navigation from './Navigation'
 import PasswordGate from './PasswordGate'
 
 export default function AppShell({ children }: { children: ReactNode }) {
   const { lang, setLang } = useLang()
+  const [year, setYear] = useState(2026)
+  useEffect(() => { setYear(new Date().getFullYear()) }, [])
 
   return (
     <PasswordGate lang={lang}>
@@ -39,7 +41,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
           </div>
           <div className="mt-8 pt-6 border-t border-gris-mid flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gris-light text-[10px] font-montserrat tracking-widest uppercase">
-              © {new Date().getFullYear()} Maison Corleone — {lang === 'fr' ? 'Tous droits réservés' : 'All rights reserved'}
+              © {year} Maison Corleone — {lang === 'fr' ? 'Tous droits réservés' : 'All rights reserved'}
             </p>
             <p className="text-gris-light text-[10px] font-montserrat tracking-widest">
               Marque INPI n°5160970 · Classes 36, 39, 42
