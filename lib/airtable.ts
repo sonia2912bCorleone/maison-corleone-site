@@ -76,9 +76,9 @@ function recordToProduct(record: AirtableRecord): Product {
     description: f.Description || '',
     descriptionEn: f['description anglais'] || '',
     prix,
-    images: (f.Images as AirtableImage[]) || [],
-    tags: f.Tags || [],
-    categories: f.Categories || '',
+    images: Array.isArray(f.Images) ? (f.Images as AirtableImage[]) : [],
+    tags: Array.isArray(f.Tags) ? f.Tags : [],
+    categories: typeof f.Categories === 'string' ? f.Categories : '',
     materiaux: f.materiaux as string | undefined,
   }
 }
