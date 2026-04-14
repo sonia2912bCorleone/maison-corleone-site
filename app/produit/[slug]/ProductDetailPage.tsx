@@ -81,19 +81,14 @@ export default function ProductDetailPage({ product }: Props) {
 
           {/* Info */}
           <div>
-            {/* Category & tags */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              {product.categories && (
+            {/* Category */}
+            {product.categories && (
+              <div className="flex flex-wrap items-center gap-2 mb-4">
                 <span className="text-[9px] text-gris-light font-montserrat tracking-widest uppercase border border-gris-mid px-2 py-0.5">
                   {product.categories}
                 </span>
-              )}
-              {product.tags.map((tag) => (
-                <span key={tag} className="text-[9px] text-or font-montserrat tracking-widest uppercase border border-or/40 px-2 py-0.5">
-                  {tag}
-                </span>
-              ))}
-            </div>
+              </div>
+            )}
 
             {/* Reference */}
             <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-2">

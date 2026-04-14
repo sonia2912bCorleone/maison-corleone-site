@@ -70,13 +70,7 @@ function recordToProduct(record: AirtableRecord): Product {
   )
   const prix = prixKey ? (f[prixKey] as number | undefined) ?? null : null
 
-  // Tags: TOUJOURS un tableau propre dès la source
-  const tags: string[] = (() => {
-    const raw = f.Tags ?? (f as Record<string, unknown>).tags ?? ''
-    return Array.isArray(raw)
-      ? (raw as string[])
-      : String(raw).split(',').map((x: string) => x.trim()).filter(Boolean)
-  })()
+  const tags: string[] = []
 
   // CATEGORIES: champ uppercase dans Airtable réel
   const categories: string = (() => {

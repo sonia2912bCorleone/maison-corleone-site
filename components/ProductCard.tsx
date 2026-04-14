@@ -34,19 +34,6 @@ export default function ProductCard({ product, lang }: Props) {
               <span className="text-gris-light text-xs font-montserrat">No image</span>
             </div>
           )}
-          {/* Tags overlay */}
-          {product.tags.length > 0 && (
-            <div className="absolute top-3 left-3 flex gap-1 flex-wrap">
-              {product.tags.slice(0, 2).map((tag) => (
-                <span
-                  key={tag}
-                  className="bg-noir/80 text-or text-[9px] font-montserrat tracking-widest uppercase px-2 py-0.5"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
 
         {/* Content */}
