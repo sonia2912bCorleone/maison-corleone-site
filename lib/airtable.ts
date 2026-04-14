@@ -22,7 +22,6 @@ export interface Product {
   descriptionEn: string
   prix: number | null
   images: AirtableImage[]
-  tags: string[]
   categories: string
   materiaux?: string
 }
@@ -37,7 +36,6 @@ interface AirtableRecord {
     'Prix Circuit Direct Usine'?: number
     [key: string]: unknown
     Images?: AirtableImage[]
-    Tags?: string[] | string
     Categories?: string
     CATEGORIES?: string
     materiaux?: string
@@ -70,8 +68,6 @@ function recordToProduct(record: AirtableRecord): Product {
   )
   const prix = prixKey ? (f[prixKey] as number | undefined) ?? null : null
 
-  const tags: string[] = []
-
   // CATEGORIES: champ uppercase dans Airtable réel
   const categories: string = (() => {
     const raw = f.CATEGORIES ?? f.Categories ?? ''
@@ -87,7 +83,6 @@ function recordToProduct(record: AirtableRecord): Product {
     descriptionEn: f['description anglais'] || '',
     prix,
     images: Array.isArray(f.Images) ? (f.Images as AirtableImage[]) : [],
-    tags,
     categories,
     materiaux: f.materiaux as string | undefined,
   }
