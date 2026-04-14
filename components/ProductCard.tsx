@@ -35,9 +35,9 @@ export default function ProductCard({ product, lang }: Props) {
             </div>
           )}
           {/* Tags overlay */}
-          {(Array.isArray(product.tags) ? product.tags : ((product.tags as unknown as string) || '').split(',').map((t: string) => t.trim()).filter(Boolean)).length > 0 && (
+          {product.tags.length > 0 && (
             <div className="absolute top-3 left-3 flex gap-1 flex-wrap">
-              {(Array.isArray(product.tags) ? product.tags : ((product.tags as unknown as string) || '').split(',').map((t: string) => t.trim()).filter(Boolean)).slice(0, 2).map((tag) => (
+              {product.tags.slice(0, 2).map((tag) => (
                 <span
                   key={tag}
                   className="bg-noir/80 text-or text-[9px] font-montserrat tracking-widest uppercase px-2 py-0.5"
