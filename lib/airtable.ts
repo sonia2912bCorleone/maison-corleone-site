@@ -70,16 +70,16 @@ function recordToProduct(record: AirtableRecord): Product {
   )
   const prix = prixKey ? (f[prixKey] as number | undefined) ?? null : null
 
-  // Tags: Airtable returns a comma-separated string, not an array
-  const rawTags = f.Tags
-  const tags = Array.isArray(rawTags)
-    ? rawTags
-    : typeof rawTags === 'string' && rawTags.trim()
-      ? rawTags.split(',').map((t) => t.trim()).filter(Boolean)
-      : []
+  // Tags: force array — Airtable returns a comma-separated string
+  const tags = Array.isArray(f.Tags)
+    ? f.Tags
+    : ((f.Tags as string) || '').split(',').map((t: string) => t.trim()).filter(Boolean)
 
-  // CATEGORIES field is uppercase in real Airtable data
-  const categories = (f.CATEGORIES || f.Categories || '').trim()
+  // CATEGORIES: force string — field is uppercase in real Airtable data
+  const rawCat = f.CATEGORIES || f.Categories || ''
+  const categories = Array.isArray(rawCat)
+    ? (rawCat as string[])[0] || ''
+    : String(rawCat).trim()
 
   return {
     id: record.id,

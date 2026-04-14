@@ -88,7 +88,7 @@ export default function ProductDetailPage({ product }: Props) {
                   {product.categories}
                 </span>
               )}
-              {product.tags.map((tag) => (
+              {(Array.isArray(product.tags) ? product.tags : ((product.tags as unknown as string) || '').split(',').map((t: string) => t.trim()).filter(Boolean)).map((tag) => (
                 <span key={tag} className="text-[9px] text-or font-montserrat tracking-widest uppercase border border-or/40 px-2 py-0.5">
                   {tag}
                 </span>
