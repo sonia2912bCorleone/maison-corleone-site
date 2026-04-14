@@ -1,11 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "framework": "nextjs",
-  "env": {
-    "AIRTABLE_TOKEN": "@airtable_token",
-    "AIRTABLE_BASE_ID": "@airtable_base_id",
-    "AIRTABLE_TABLE_ID": "@airtable_table_id",
-    "NEXT_PUBLIC_SITE_PASSWORD": "@site_password"
-  }
+  "framework": "nextjs"
 }
