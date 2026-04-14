@@ -37,8 +37,9 @@ interface AirtableRecord {
     'Prix Circuit Direct Usine'?: number
     [key: string]: unknown
     Images?: AirtableImage[]
-    Tags?: string[]
+    Tags?: string[] | string
     Categories?: string
+    CATEGORIES?: string
     materiaux?: string
   }
 }
@@ -59,14 +60,26 @@ function slugify(text: string): string {
 
 function recordToProduct(record: AirtableRecord): Product {
   const f = record.fields
-  const nom = f.NOM || 'Produit sans nom'
-  const reference = f.REFERENCE || record.id
+  // Trim trailing \n from text fields
+  const nom = (f.NOM || 'Produit sans nom').trim()
+  const reference = (f.REFERENCE || record.id).trim()
 
   // Find prix field — exact name may vary
   const prixKey = Object.keys(f).find(
     (k) => k.toLowerCase().startsWith('prix circuit direct')
   )
   const prix = prixKey ? (f[prixKey] as number | undefined) ?? null : null
+
+  // Tags: Airtable returns a comma-separated string, not an array
+  const rawTags = f.Tags
+  const tags = Array.isArray(rawTags)
+    ? rawTags
+    : typeof rawTags === 'string' && rawTags.trim()
+      ? rawTags.split(',').map((t) => t.trim()).filter(Boolean)
+      : []
+
+  // CATEGORIES field is uppercase in real Airtable data
+  const categories = (f.CATEGORIES || f.Categories || '').trim()
 
   return {
     id: record.id,
@@ -77,8 +90,8 @@ function recordToProduct(record: AirtableRecord): Product {
     descriptionEn: f['description anglais'] || '',
     prix,
     images: Array.isArray(f.Images) ? (f.Images as AirtableImage[]) : [],
-    tags: Array.isArray(f.Tags) ? f.Tags : [],
-    categories: typeof f.Categories === 'string' ? f.Categories : '',
+    tags,
+    categories,
     materiaux: f.materiaux as string | undefined,
   }
 }
