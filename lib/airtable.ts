@@ -44,9 +44,9 @@ interface AirtableRecord {
 }
 
 const BASE_URL = 'https://api.airtable.com/v0'
-const TOKEN = process.env.AIRTABLE_TOKEN!
-const BASE_ID = process.env.AIRTABLE_BASE_ID!
-const TABLE_ID = process.env.AIRTABLE_TABLE_ID!
+const TOKEN = process.env.AIRTABLE_TOKEN
+const BASE_ID = process.env.AIRTABLE_BASE_ID
+const TABLE_ID = process.env.AIRTABLE_TABLE_ID
 
 function slugify(text: string): string {
   return text
@@ -84,6 +84,11 @@ function recordToProduct(record: AirtableRecord): Product {
 }
 
 export async function fetchAllProducts(): Promise<Product[]> {
+  if (!TOKEN || !BASE_ID || !TABLE_ID) {
+    console.error('Airtable env vars missing: AIRTABLE_TOKEN, AIRTABLE_BASE_ID, AIRTABLE_TABLE_ID')
+    return []
+  }
+
   const products: Product[] = []
   let offset: string | undefined
 
