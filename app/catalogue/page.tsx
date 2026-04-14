@@ -1,10 +1,11 @@
-import { fetchAllProducts, fetchCategories } from '@/lib/airtable'
+import { Suspense } from 'react'
+import { fetchAllProducts, fetchCategories, Product } from '@/lib/airtable'
 import CataloguePage from './CataloguePage'
 
 export const revalidate = 300
 
-export default async function Catalogue() {
-  let products: import('@/lib/airtable').Product[] = []
+async function CatalogueData() {
+  let products: Product[] = []
   let categories: string[] = []
 
   try {
@@ -14,4 +15,20 @@ export default async function Catalogue() {
   }
 
   return <CataloguePage initialProducts={products} categories={categories} />
+}
+
+export default function Catalogue() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-noir flex items-center justify-center">
+          <p className="text-gris-light font-montserrat text-sm tracking-widest">
+            Chargement…
+          </p>
+        </div>
+      }
+    >
+      <CatalogueData />
+    </Suspense>
+  )
 }
