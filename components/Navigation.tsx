@@ -18,7 +18,7 @@ export default function Navigation({ lang, onLangSwitch }: Props) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="font-cormorant text-xl text-texte tracking-[0.2em] uppercase hover:text-or transition-colors">
+          <Link href="/" className="font-cormorant text-xl text-or tracking-[0.2em] uppercase hover:text-or-light transition-colors">
             Maison Corleone
           </Link>
 

@@ -79,7 +79,7 @@ export default function PasswordGate({ children, lang }: Props) {
 
                 <button
                   type="submit"
-                  className="w-full bg-or text-noir py-3 font-montserrat text-sm font-semibold tracking-widest uppercase hover:bg-or-light transition-colors"
+                  className="w-full bg-or text-white py-3 font-montserrat text-sm font-semibold tracking-widest uppercase hover:bg-or-light transition-colors"
                 >
                   {t(lang, 'password_submit')}
                 </button>

@@ -8,11 +8,16 @@
   --blanc: #FAFAF8;
   --texte: #1A1A1A;
   --noir: #0A0A0A;
-  --or: #C9A84C;
-  --or-light: #E8C97A;
+  --or: #8B6914;
+  --or-light: #C9A84C;
+  --or-pale: #E8C97A;
+  --carte: #FFFFFF;
+  --carte-border: #E8E3DC;
   --gris: #F0EDE8;
   --gris-mid: #E0DDD8;
   --gris-light: #666666;
+  --footer-bg: #1A1A1A;
+  --footer-text: #AAAAAA;
 }
 
 * {
@@ -35,10 +40,10 @@ body {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #FAFAF8; }
 ::-webkit-scrollbar-thumb { background: #E0DDD8; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #C9A84C; }
+::-webkit-scrollbar-thumb:hover { background: #8B6914; }
 
 /* Selection */
-::selection { background: #C9A84C; color: #0A0A0A; }
+::selection { background: #8B6914; color: #FFFFFF; }
 
 /* Line clamp */
 .line-clamp-2 {

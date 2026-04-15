@@ -76,7 +76,7 @@ function CatalogueSkeleton() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="bg-gris border border-gris-mid animate-pulse">
+            <div key={i} className="bg-carte border border-carte-border shadow-sm animate-pulse">
               <div className="aspect-[4/3] bg-gris-mid" />
               <div className="p-4 space-y-2">
                 <div className="h-2 w-16 bg-gris-mid rounded" />

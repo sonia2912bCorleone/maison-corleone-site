@@ -36,7 +36,7 @@ export default function HomePage() {
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: 'linear-gradient(#C9A84C 1px, transparent 1px), linear-gradient(90deg, #C9A84C 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(#8B6914 1px, transparent 1px), linear-gradient(90deg, #8B6914 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
@@ -73,7 +73,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/catalogue"
-              className="inline-block bg-or text-noir px-10 py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors"
+              className="inline-block bg-or text-white px-10 py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors"
             >
               {t(lang, 'hero_cta')}
             </Link>
@@ -156,7 +156,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/catalogue"
-            className="inline-block bg-or text-noir px-12 py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors"
+            className="inline-block bg-or text-white px-12 py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors"
           >
             {lang === 'fr' ? 'Voir le catalogue complet' : 'View full catalogue'}
           </Link>

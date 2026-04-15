@@ -73,7 +73,7 @@ export default function EspaceClient() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-or text-noir py-3 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors disabled:opacity-50"
+            className="w-full bg-or text-white py-3 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors disabled:opacity-50"
           >
             {loading
               ? (lang === 'fr' ? 'Vérification…' : 'Checking…')

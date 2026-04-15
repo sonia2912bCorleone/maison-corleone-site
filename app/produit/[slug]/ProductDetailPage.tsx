@@ -132,7 +132,7 @@ export default function ProductDetailPage({ product }: Props) {
             {/* CTA */}
             <button
               onClick={() => setShowDevis(!showDevis)}
-              className="w-full bg-or text-noir py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors mb-6"
+              className="w-full bg-or text-white py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors mb-6"
             >
               {t(lang, 'product_devis')}
             </button>

@@ -9,14 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        blanc: '#FAFAF8',    // fond principal
-        texte: '#1A1A1A',   // texte courant
-        noir: '#0A0A0A',    // texte sur bouton doré
-        or: '#C9A84C',
-        'or-light': '#E8C97A',
-        gris: '#F0EDE8',    // fond sections secondaires
-        'gris-mid': '#E0DDD8', // bordures, squelettes
-        'gris-light': '#666666', // texte secondaire
+        blanc: '#FAFAF8',       // fond principal
+        texte: '#1A1A1A',       // texte courant
+        noir: '#0A0A0A',        // usage interne sombre
+        or: '#8B6914',          // or foncé — titres, CTA, accents
+        'or-light': '#C9A84C',  // or clair — hover
+        'or-pale': '#E8C97A',   // or très clair — fonds subtils
+        carte: '#FFFFFF',       // fond cards produits
+        'carte-border': '#E8E3DC', // bordure cards
+        gris: '#F0EDE8',        // fond sections secondaires
+        'gris-mid': '#E0DDD8',  // bordures, squelettes
+        'gris-light': '#666666',// texte secondaire
+        'footer-bg': '#1A1A1A', // fond footer
+        'footer-text': '#AAAAAA', // texte footer
       },
       fontFamily: {
         cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],

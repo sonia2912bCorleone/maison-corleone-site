@@ -116,7 +116,7 @@ export default function DevisForm({ lang, productRef, productNom }: Props) {
         <button
           type="submit"
           disabled={status === 'sending'}
-          className="w-full bg-or text-noir py-3 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors disabled:opacity-50"
+          className="w-full bg-or text-white py-3 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors disabled:opacity-50"
         >
           {status === 'sending' ? t(lang, 'devis_sending') : t(lang, 'devis_send')}
         </button>

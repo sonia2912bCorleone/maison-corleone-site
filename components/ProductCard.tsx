@@ -18,7 +18,7 @@ export default function ProductCard({ product, lang }: Props) {
 
   return (
     <Link href={`/produit/${product.slug}`} className="group block">
-      <div className="bg-gris border border-gris-mid hover:border-or/40 transition-all duration-300 overflow-hidden">
+      <div className="bg-carte border border-carte-border shadow-sm hover:shadow-md hover:border-or/40 transition-all duration-300 overflow-hidden">
         {/* Image */}
         <div className="relative aspect-[4/3] overflow-hidden bg-gris-mid">
           {imageUrl ? (
