@@ -6,11 +6,11 @@ import AppShell from '@/components/AppShell'
 export const metadata: Metadata = {
   title: 'Maison Corleone — Mobilier Haut de Gamme Accès Direct Usine',
   description:
-    'Maison Corleone : mobilier de prestige sourcing direct ateliers de référence. Qualité B&B Italia, prix −60/−80%. Hôtels, promoteurs, architectes.',
+    'Maison Corleone : mobilier de prestige sourcing direct ateliers de référence. Qualité B&B Italia, jusqu\'à −87% sous le prix public. Hôtels, promoteurs, architectes.',
   keywords: 'mobilier luxe, canapé haut de gamme, mobilier contract, mobilier hôtelier, sourcing direct',
   openGraph: {
     title: 'Maison Corleone',
-    description: 'Accès direct aux ateliers. Qualité B&B Italia. Prix −60/−80%.',
+    description: 'Accès direct aux ateliers. Qualité B&B Italia. Jusqu\'à −87% sous le prix public.',
     type: 'website',
     locale: 'fr_FR',
     alternateLocale: 'en_US',
