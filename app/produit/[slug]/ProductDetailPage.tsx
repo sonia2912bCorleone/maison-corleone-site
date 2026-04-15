@@ -19,7 +19,10 @@ export default function ProductDetailPage({ product }: Props) {
     ? product.descriptionEn
     : product.description
 
-  const mainImg = product.images[activeImg]?.url ?? product.images[0]?.url
+  // ImageURL Cloudinary pour l'image principale (activeImg=0), sinon pièce jointe
+  const mainImg = activeImg === 0
+    ? (product.imageUrl || product.images[0]?.url)
+    : (product.images[activeImg]?.url ?? product.images[0]?.url)
 
   return (
     <div className="min-h-screen bg-noir py-12 px-4">

@@ -9,7 +9,8 @@ interface Props {
 }
 
 export default function ProductCard({ product, lang }: Props) {
-  const imageUrl = product.images[0]?.thumbnails?.large?.url ?? product.images[0]?.url
+  // ImageURL Cloudinary en priorité — fallback sur pièce jointe Airtable
+  const imageUrl = product.imageUrl || product.images[0]?.thumbnails?.large?.url || product.images[0]?.url
   const nom = product.nom
   const desc = lang === 'en' && product.descriptionEn
     ? product.descriptionEn

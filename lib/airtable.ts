@@ -21,7 +21,8 @@ export interface Product {
   description: string
   descriptionEn: string
   prix: number | null
-  images: AirtableImage[]
+  imageUrl: string        // URL Cloudinary permanente (source vérité)
+  images: AirtableImage[] // Pièces jointes Airtable (fallback / miniatures)
   categories: string
   materiaux?: string
 }
@@ -36,6 +37,7 @@ interface AirtableRecord {
     'Prix Circuit Direct Usine'?: number
     [key: string]: unknown
     Images?: AirtableImage[]
+    ImageURL?: string
     Categories?: string
     CATEGORIES?: string
     materiaux?: string
@@ -74,6 +76,10 @@ function recordToProduct(record: AirtableRecord): Product {
     return Array.isArray(raw) ? String((raw as string[])[0] ?? '').trim() : String(raw).trim()
   })()
 
+  const images: AirtableImage[] = Array.isArray(f.Images) ? (f.Images as AirtableImage[]) : []
+  // ImageURL Cloudinary en priorité — fallback sur pièce jointe Airtable
+  const imageUrl: string = (f.ImageURL as string | undefined)?.trim() || images[0]?.url || ''
+
   return {
     id: record.id,
     slug: slugify(reference || nom),
@@ -82,7 +88,8 @@ function recordToProduct(record: AirtableRecord): Product {
     description: f.Description || '',
     descriptionEn: f['description anglais'] || '',
     prix,
-    images: Array.isArray(f.Images) ? (f.Images as AirtableImage[]) : [],
+    imageUrl,
+    images,
     categories,
     materiaux: f.materiaux as string | undefined,
   }
@@ -119,7 +126,7 @@ export async function fetchAllProducts(): Promise<Product[]> {
     offset = data.offset
   } while (offset)
 
-  return products.filter((p) => p.images.length > 0)
+  return products.filter((p) => p.imageUrl || p.images.length > 0)
 }
 
 export async function fetchProductBySlug(slug: string): Promise<Product | null> {
