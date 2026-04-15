@@ -50,11 +50,14 @@ export default function HomePage() {
           </p>
 
           {/* Main headline */}
-          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-texte leading-tight mb-4">
+          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-texte leading-tight mb-2">
             {t(lang, 'hero_tagline')}
           </h1>
-          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-or leading-tight mb-8">
+          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-or leading-tight mb-2">
             {t(lang, 'hero_tagline2')}
+          </h1>
+          <h1 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl text-texte leading-tight mb-8">
+            {t(lang, 'hero_tagline3')}
           </h1>
 
           {/* Divider */}

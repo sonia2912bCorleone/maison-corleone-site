@@ -9,9 +9,10 @@ export const translations = {
     nav_accueil: 'Accueil',
 
     // Hero
-    hero_tagline: "Nous n'ouvrons pas une boutique.",
-    hero_tagline2: 'Nous ouvrons l\'accès aux usines.',
-    hero_subtitle: 'Mobilier haut de gamme — qualité B&B Italia, prix −60/−80%.',
+    hero_tagline: "Sourcing Mondial d'exception",
+    hero_tagline2: 'Accès direct aux Usines',
+    hero_tagline3: 'Haut de Gamme jusqu\'à −87% sous le prix Public',
+    hero_subtitle: 'Mobilier haut de gamme sourcing direct ateliers de référence. Qualité B&B Italia, jusqu\'à −87% sous le prix public.',
     hero_cta: 'Découvrir le catalogue',
     hero_cta2: 'Demander un accès',
 
@@ -73,9 +74,10 @@ export const translations = {
     nav_accueil: 'Home',
 
     // Hero
-    hero_tagline: "We don't open a showroom.",
-    hero_tagline2: "We open access to the factories.",
-    hero_subtitle: 'Premium furniture — B&B Italia quality, −60/−80% off retail.',
+    hero_tagline: 'Exceptional Global Sourcing',
+    hero_tagline2: 'Direct Factory Access',
+    hero_tagline3: 'Premium Furniture up to −87% below Retail',
+    hero_subtitle: 'Premium furniture sourced directly from reference workshops. B&B Italia quality, up to −87% below retail price.',
     hero_cta: 'Explore the catalogue',
     hero_cta2: 'Request access',
 
