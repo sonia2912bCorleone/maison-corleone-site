@@ -42,7 +42,7 @@ export default function ProductCard({ product, lang }: Props) {
           <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-1">
             {product.reference}
           </p>
-          <h3 className="font-cormorant text-lg text-white leading-tight mb-2 group-hover:text-or transition-colors">
+          <h3 className="font-cormorant text-lg text-texte leading-tight mb-2 group-hover:text-or transition-colors">
             {nom}
           </h3>
           {desc && (

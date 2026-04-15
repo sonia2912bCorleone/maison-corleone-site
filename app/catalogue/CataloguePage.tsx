@@ -29,14 +29,14 @@ function CatalogueContent({ initialProducts, categories }: Props) {
   }, [clientCode, initialProducts])
 
   return (
-    <div className="min-h-screen bg-noir">
+    <div className="min-h-screen bg-blanc">
       {/* Header */}
       <div className="border-b border-gris-mid bg-gris py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-4">
             {lang === 'fr' ? 'Collection complète' : 'Full collection'}
           </p>
-          <h1 className="font-cormorant text-5xl sm:text-6xl text-white mb-4">
+          <h1 className="font-cormorant text-5xl sm:text-6xl text-texte mb-4">
             {t(lang, 'catalogue_title')}
           </h1>
           <p className="text-gris-light font-montserrat text-sm">
@@ -65,7 +65,7 @@ function CatalogueContent({ initialProducts, categories }: Props) {
 // Loading skeleton shown during Suspense
 function CatalogueSkeleton() {
   return (
-    <div className="min-h-screen bg-noir">
+    <div className="min-h-screen bg-blanc">
       <div className="border-b border-gris-mid bg-gris py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="h-3 w-32 bg-gris-mid rounded mb-4" />

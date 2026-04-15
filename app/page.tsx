@@ -5,7 +5,7 @@ import { useLang } from '@/components/LangProvider'
 import { t } from '@/lib/i18n'
 
 const STATS = [
-  { fr: '−60/−80%', en: '−60/−80%', label_fr: 'sous le marché', label_en: 'below retail' },
+  { fr: 'jusqu'à −87%', en: 'up to −87%', label_fr: 'sous le prix public', label_en: 'below retail price' },
   { fr: '500+', en: '500+', label_fr: 'références catalogue', label_en: 'catalogue references' },
   { fr: '72h', en: '72h', label_fr: 'délai de réponse devis', label_en: 'quote response time' },
 ]
@@ -31,7 +31,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-noir">
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-blanc">
         {/* Background grid ornament */}
         <div
           className="absolute inset-0 opacity-5"
@@ -50,7 +50,7 @@ export default function HomePage() {
           </p>
 
           {/* Main headline */}
-          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-white leading-tight mb-4">
+          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-texte leading-tight mb-4">
             {t(lang, 'hero_tagline')}
           </h1>
           <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-or leading-tight mb-8">
@@ -118,7 +118,7 @@ export default function HomePage() {
             <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-4">
               {lang === 'fr' ? 'Notre Différence' : 'Our Difference'}
             </p>
-            <h2 className="font-cormorant text-4xl sm:text-5xl text-white">
+            <h2 className="font-cormorant text-4xl sm:text-5xl text-texte">
               {lang === 'fr' ? 'L\'excellence sans compromis' : 'Excellence without compromise'}
             </h2>
             <div className="w-12 h-px bg-or mx-auto mt-4" />
@@ -128,7 +128,7 @@ export default function HomePage() {
             {POSITIONING.map((item, i) => (
               <div key={i} className="border border-gris-mid p-8 hover:border-or/40 transition-colors">
                 <div className="w-6 h-px bg-or mb-6" />
-                <h3 className="font-cormorant text-2xl text-white mb-4">
+                <h3 className="font-cormorant text-2xl text-texte mb-4">
                   {lang === 'fr' ? item.fr.title : item.en.title}
                 </h3>
                 <p className="text-gris-light text-xs font-montserrat leading-relaxed">
@@ -146,7 +146,7 @@ export default function HomePage() {
           <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-4">
             {lang === 'fr' ? '500+ références disponibles' : '500+ references available'}
           </p>
-          <h2 className="font-cormorant text-4xl sm:text-5xl text-white mb-6">
+          <h2 className="font-cormorant text-4xl sm:text-5xl text-texte mb-6">
             {lang === 'fr' ? 'Explorez notre catalogue' : 'Explore our catalogue'}
           </h2>
           <p className="text-gris-light font-montserrat text-sm mb-10 leading-relaxed">
@@ -167,24 +167,24 @@ export default function HomePage() {
       <section id="contact" className="py-24 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-4">Contact</p>
-          <h2 className="font-cormorant text-4xl sm:text-5xl text-white mb-6">
+          <h2 className="font-cormorant text-4xl sm:text-5xl text-texte mb-6">
             {lang === 'fr' ? 'Discutons de votre projet' : 'Let\'s discuss your project'}
           </h2>
           <div className="w-10 h-px bg-or mx-auto mb-10" />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
             <div className="border border-gris-mid p-6">
               <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-2">Email</p>
-              <a href="mailto:contact@maisoncorleone.com" className="text-white font-montserrat text-sm hover:text-or transition-colors">
+              <a href="mailto:contact@maisoncorleone.com" className="text-texte font-montserrat text-sm hover:text-or transition-colors">
                 contact@maisoncorleone.com
               </a>
             </div>
             <div className="border border-gris-mid p-6">
               <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-2">
-                {lang === 'fr' ? 'Adresse' : 'Address'}
+                {lang === 'fr' ? 'Site' : 'Website'}
               </p>
-              <p className="text-white font-montserrat text-sm leading-relaxed">
-                177 Av. Georges Clémenceau<br />92000 Nanterre
-              </p>
+              <a href="https://www.maisoncorleone.com" className="text-texte font-montserrat text-sm hover:text-or transition-colors">
+                www.maisoncorleone.com
+              </a>
             </div>
           </div>
           <div className="mt-8">

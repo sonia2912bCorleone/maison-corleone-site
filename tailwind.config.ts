@@ -9,12 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        noir: '#0A0A0A',
+        blanc: '#FAFAF8',    // fond principal
+        texte: '#1A1A1A',   // texte courant
+        noir: '#0A0A0A',    // texte sur bouton doré
         or: '#C9A84C',
         'or-light': '#E8C97A',
-        gris: '#1A1A1A',
-        'gris-mid': '#2A2A2A',
-        'gris-light': '#888888',
+        gris: '#F0EDE8',    // fond sections secondaires
+        'gris-mid': '#E0DDD8', // bordures, squelettes
+        'gris-light': '#666666', // texte secondaire
       },
       fontFamily: {
         cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],

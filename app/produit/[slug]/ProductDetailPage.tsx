@@ -25,7 +25,7 @@ export default function ProductDetailPage({ product }: Props) {
     : (product.images[activeImg]?.url ?? product.images[0]?.url)
 
   return (
-    <div className="min-h-screen bg-noir py-12 px-4">
+    <div className="min-h-screen bg-blanc py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -99,7 +99,7 @@ export default function ProductDetailPage({ product }: Props) {
             </p>
 
             {/* Name */}
-            <h1 className="font-cormorant text-4xl sm:text-5xl text-white mb-4 leading-tight">
+            <h1 className="font-cormorant text-4xl sm:text-5xl text-texte mb-4 leading-tight">
               {product.nom}
             </h1>
 
@@ -123,7 +123,7 @@ export default function ProductDetailPage({ product }: Props) {
                   {product.prix.toLocaleString('fr-FR')} {t(lang, 'product_price_unit')}
                 </p>
               ) : (
-                <p className="font-montserrat text-sm text-white">
+                <p className="font-montserrat text-sm text-texte">
                   {lang === 'fr' ? 'Prix sur demande' : 'Price on request'}
                 </p>
               )}
@@ -152,7 +152,7 @@ export default function ProductDetailPage({ product }: Props) {
                 <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-1">
                   {lang === 'fr' ? 'Matériaux' : 'Materials'}
                 </p>
-                <p className="text-white font-montserrat text-sm">{product.materiaux}</p>
+                <p className="text-texte font-montserrat text-sm">{product.materiaux}</p>
               </div>
             )}
           </div>

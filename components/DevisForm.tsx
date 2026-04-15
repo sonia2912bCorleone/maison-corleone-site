@@ -66,14 +66,14 @@ export default function DevisForm({ lang, productRef, productNom }: Props) {
     return (
       <div className="border border-or/40 bg-or/5 p-6 text-center">
         <p className="text-or font-cormorant text-xl mb-2">✓</p>
-        <p className="text-white font-montserrat text-sm">{t(lang, 'devis_success')}</p>
+        <p className="text-texte font-montserrat text-sm">{t(lang, 'devis_success')}</p>
       </div>
     )
   }
 
   return (
     <div className="border border-gris-mid p-6">
-      <h3 className="font-cormorant text-2xl text-white mb-6">{t(lang, 'devis_title')}</h3>
+      <h3 className="font-cormorant text-2xl text-texte mb-6">{t(lang, 'devis_title')}</h3>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {[
@@ -92,7 +92,7 @@ export default function DevisForm({ lang, productRef, productNom }: Props) {
               onChange={(e) => update(key as keyof typeof form, e.target.value)}
               required={required}
               min={type === 'number' ? 1 : undefined}
-              className="w-full bg-gris-mid border border-gris-mid text-white px-3 py-2.5 text-sm font-montserrat focus:outline-none focus:border-or transition-colors"
+              className="w-full bg-gris-mid border border-gris-mid text-texte px-3 py-2.5 text-sm font-montserrat focus:outline-none focus:border-or transition-colors"
             />
           </div>
         ))}
@@ -105,7 +105,7 @@ export default function DevisForm({ lang, productRef, productNom }: Props) {
             value={form.message}
             onChange={(e) => update('message', e.target.value)}
             rows={4}
-            className="w-full bg-gris-mid border border-gris-mid text-white px-3 py-2.5 text-sm font-montserrat focus:outline-none focus:border-or transition-colors resize-none"
+            className="w-full bg-gris-mid border border-gris-mid text-texte px-3 py-2.5 text-sm font-montserrat focus:outline-none focus:border-or transition-colors resize-none"
           />
         </div>
 

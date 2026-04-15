@@ -18,22 +18,21 @@ export default function AppShell({ children }: { children: ReactNode }) {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start gap-8">
             <div>
-              <h3 className="font-cormorant text-2xl text-white tracking-[0.15em] uppercase mb-2">
+              <h3 className="font-cormorant text-2xl text-texte tracking-[0.15em] uppercase mb-2">
                 Maison Corleone
               </h3>
               <div className="w-10 h-px bg-or mb-4" />
               <p className="text-gris-light text-xs font-montserrat leading-relaxed">
-                177 Av. Georges Clémenceau<br />
-                92000 Nanterre, France<br />
-                RCS Nanterre 987 948 155<br />
-                TVA FR68 987 948 155
+                Corleone Limited<br />
+                Capital social : 100 000 €<br />
+                TVA : FR67 999 856 586
               </p>
             </div>
             <div>
               <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-3">Contact</p>
               <a
                 href="mailto:contact@maisoncorleone.com"
-                className="text-white text-sm font-montserrat hover:text-or transition-colors"
+                className="text-texte text-sm font-montserrat hover:text-or transition-colors"
               >
                 contact@maisoncorleone.com
               </a>

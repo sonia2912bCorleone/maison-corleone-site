@@ -15,7 +15,7 @@ export default function LanguageSwitcher({ lang, onSwitch }: Props) {
         className={`px-2 py-0.5 transition-colors ${
           lang === 'fr'
             ? 'text-or border-b border-or'
-            : 'text-gris-light hover:text-white'
+            : 'text-gris-light hover:text-texte'
         }`}
       >
         FR
@@ -26,7 +26,7 @@ export default function LanguageSwitcher({ lang, onSwitch }: Props) {
         className={`px-2 py-0.5 transition-colors ${
           lang === 'en'
             ? 'text-or border-b border-or'
-            : 'text-gris-light hover:text-white'
+            : 'text-gris-light hover:text-texte'
         }`}
       >
         EN

@@ -36,13 +36,13 @@ export default function EspaceClient() {
   }
 
   return (
-    <div className="min-h-screen bg-noir flex items-center justify-center px-4">
+    <div className="min-h-screen bg-blanc flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
           <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-4">
             {lang === 'fr' ? 'Accès personnalisé' : 'Personalised access'}
           </p>
-          <h1 className="font-cormorant text-4xl text-white mb-2">
+          <h1 className="font-cormorant text-4xl text-texte mb-2">
             {t(lang, 'client_title')}
           </h1>
           <div className="w-10 h-px bg-or mx-auto mb-4" />
@@ -61,7 +61,7 @@ export default function EspaceClient() {
               value={code}
               onChange={(e) => setCode(e.target.value.toUpperCase())}
               placeholder={t(lang, 'client_code_placeholder')}
-              className="w-full bg-gris border border-gris-mid text-white px-4 py-3 font-montserrat text-sm tracking-wider focus:outline-none focus:border-or transition-colors uppercase"
+              className="w-full bg-gris border border-gris-mid text-texte px-4 py-3 font-montserrat text-sm tracking-wider focus:outline-none focus:border-or transition-colors uppercase"
               required
             />
           </div>

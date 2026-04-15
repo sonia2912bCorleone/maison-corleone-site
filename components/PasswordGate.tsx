@@ -41,11 +41,11 @@ export default function PasswordGate({ children, lang }: Props) {
 
       {/* Password overlay — covers children until unlocked */}
       {(!mounted || !unlocked) && (
-        <div className="fixed inset-0 z-[9999] bg-noir flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-[9999] bg-blanc flex items-center justify-center px-4">
           <div className="w-full max-w-md">
             {/* Logo */}
             <div className="text-center mb-10">
-              <h1 className="font-cormorant text-4xl text-white tracking-[0.15em] uppercase">
+              <h1 className="font-cormorant text-4xl text-texte tracking-[0.15em] uppercase">
                 Maison Corleone
               </h1>
               <div className="w-16 h-px bg-or mx-auto mt-3 mb-4" />
@@ -66,7 +66,7 @@ export default function PasswordGate({ children, lang }: Props) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder={t(lang, 'password_placeholder')}
-                    className="w-full bg-gris border border-gris-mid text-white px-4 py-3 font-montserrat text-sm focus:outline-none focus:border-or transition-colors"
+                    className="w-full bg-gris border border-gris-mid text-texte px-4 py-3 font-montserrat text-sm focus:outline-none focus:border-or transition-colors"
                     autoFocus
                   />
                 </div>

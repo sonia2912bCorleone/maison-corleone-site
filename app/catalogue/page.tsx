@@ -21,7 +21,7 @@ export default function Catalogue() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-noir flex items-center justify-center">
+        <div className="min-h-screen bg-blanc flex items-center justify-center">
           <p className="text-gris-light font-montserrat text-sm tracking-widest">
             Chargement…
           </p>

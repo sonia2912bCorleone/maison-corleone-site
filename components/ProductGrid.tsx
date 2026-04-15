@@ -44,7 +44,7 @@ export default function ProductGrid({ initialProducts, categories, lang }: Props
             className={`text-[10px] font-montserrat tracking-widest uppercase px-4 py-2 border transition-colors ${
               active === cat
                 ? 'border-or text-or bg-or/10'
-                : 'border-gris-mid text-gris-light hover:border-or/40 hover:text-white'
+                : 'border-gris-mid text-gris-light hover:border-or/40 hover:text-texte'
             }`}
           >
             {cat === 'all' ? t(lang, 'catalogue_all') : cat}
