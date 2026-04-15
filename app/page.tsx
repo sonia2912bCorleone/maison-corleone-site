@@ -5,7 +5,7 @@ import { useLang } from '@/components/LangProvider'
 import { t } from '@/lib/i18n'
 
 const STATS = [
-  { fr: 'jusqu'à −87%', en: 'up to −87%', label_fr: 'sous le prix public', label_en: 'below retail price' },
+  { fr: "jusqu'à −87%", en: 'up to −87%', label_fr: 'sous le prix public', label_en: 'below retail price' },
   { fr: '500+', en: '500+', label_fr: 'références catalogue', label_en: 'catalogue references' },
   { fr: '72h', en: '72h', label_fr: 'délai de réponse devis', label_en: 'quote response time' },
 ]
