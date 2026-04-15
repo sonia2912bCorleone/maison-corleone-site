@@ -15,11 +15,11 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 
-// ─── Chargement .env.local ────────────────────────────────────────────────────
+// ─── Chargement .env ─────────────────────────────────────────────────────────
 function loadEnvLocal() {
-  const envPath = path.join(__dirname, '..', '.env.local');
+  const envPath = path.join(__dirname, '..', '.env');
   if (!fs.existsSync(envPath)) {
-    console.error('❌ Fichier .env.local introuvable à', envPath);
+    console.error('❌ Fichier .env introuvable à', envPath);
     process.exit(1);
   }
   const lines = fs.readFileSync(envPath, 'utf-8').split('\n');
@@ -48,9 +48,9 @@ const REQUIRED = [
 
 const missing = REQUIRED.filter((k) => !process.env[k]);
 if (missing.length > 0) {
-  console.error('\n❌ Variables manquantes dans .env.local :');
+  console.error('\n❌ Variables manquantes dans .env :');
   missing.forEach((k) => console.error(`   → ${k}`));
-  console.error('\nAjoutez ces variables dans le fichier .env.local et relancez.\n');
+  console.error('\nAjoutez ces variables dans le fichier .env et relancez.\n');
   process.exit(1);
 }
 
