@@ -14,6 +14,13 @@ const https = require('https');
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const sharp = require('sharp');
+
+// ─── Filtre --name "Nom produit" (optionnel) ──────────────────────────────────
+const nameArg = (() => {
+  const idx = process.argv.indexOf('--name');
+  return idx !== -1 ? process.argv[idx + 1] : null;
+})();
 
 // ─── Chargement .env ─────────────────────────────────────────────────────────
 function loadEnvLocal() {
@@ -85,6 +92,33 @@ async function downloadImage(url) {
   const { status, body } = await httpGet(url);
   if (status !== 200) throw new Error(`HTTP ${status} lors du téléchargement`);
   return body;
+}
+
+/** Compresse un Buffer image si > 9.5 MB, sinon retourne tel quel */
+async function compressIfNeeded(buffer) {
+  const MAX_BYTES = 9.5 * 1024 * 1024; // 9.5 MB
+  if (buffer.length <= MAX_BYTES) return buffer;
+
+  console.log(`   ↳ Image ${(buffer.length / 1024 / 1024).toFixed(1)} MB → compression Sharp...`);
+
+  // Essai progressif : qualité 85 → 70 → 55 → 40
+  for (const quality of [85, 70, 55, 40]) {
+    const compressed = await sharp(buffer)
+      .jpeg({ quality, progressive: true })
+      .toBuffer();
+    if (compressed.length <= MAX_BYTES) {
+      console.log(`   ↳ Compressé à ${(compressed.length / 1024 / 1024).toFixed(1)} MB (qualité ${quality})`);
+      return compressed;
+    }
+  }
+
+  // Dernier recours : redimensionner à 2000px max
+  const compressed = await sharp(buffer)
+    .resize({ width: 2000, height: 2000, fit: 'inside', withoutEnlargement: true })
+    .jpeg({ quality: 70, progressive: true })
+    .toBuffer();
+  console.log(`   ↳ Redimensionné + compressé à ${(compressed.length / 1024 / 1024).toFixed(1)} MB`);
+  return compressed;
 }
 
 /** PATCH Airtable */
@@ -261,8 +295,14 @@ async function main() {
     const imageURL = fields.ImageURL || '';
     const images   = fields.Images || [];
 
+    // ── Filtre --name : ignorer les autres produits ───────────────────────────
+    if (nameArg && nom.toLowerCase() !== nameArg.toLowerCase()) {
+      skipped++;
+      continue;
+    }
+
     // ── Si ImageURL déjà remplie → skip ──────────────────────────────────────
-    if (imageURL && imageURL.trim() !== '') {
+    if (!nameArg && imageURL && imageURL.trim() !== '') {
       console.log(`⏭️  [${i + 1}/${products.length}] ${nom} → déjà rempli, skippé`);
       skipped++;
       continue;
@@ -281,12 +321,15 @@ async function main() {
       const publicId = sanitizePublicId(nom) + '-' + id.slice(-6);
 
       // 1. Télécharger l'image
-      const imageBuffer = await downloadImage(attachmentUrl);
+      const rawBuffer = await downloadImage(attachmentUrl);
 
-      // 2. Upload sur Cloudinary
+      // 2. Comprimer si > 9.5 MB
+      const imageBuffer = await compressIfNeeded(rawBuffer);
+
+      // 3. Upload sur Cloudinary
       const cloudinaryUrl = await uploadToCloudinary(imageBuffer, publicId);
 
-      // 3. PATCH Airtable
+      // 4. PATCH Airtable
       await airtablePatch(id, { ImageURL: cloudinaryUrl });
 
       console.log(`✅ [${i + 1}/${products.length}] ${nom} → ${cloudinaryUrl}`);
@@ -301,6 +344,9 @@ async function main() {
   }
 
   // ─── Résumé final ─────────────────────────────────────────────────────────
+  if (nameArg) {
+    console.log(`\n   (Mode filtre : produit "${nameArg}" uniquement)`);
+  }
   console.log('\n═══════════════════════════════════════════════════════════════');
   console.log(`TERMINÉ — ${processed} traités / ${skipped} skippés / ${errors} erreurs`);
   console.log('═══════════════════════════════════════════════════════════════\n');
