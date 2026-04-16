@@ -10,6 +10,12 @@ import DevisForm from '@/components/DevisForm'
 
 interface Props { product: Product }
 
+/** Génère un thumbnail 200×200 depuis une URL Cloudinary */
+function cloudinaryThumb(url: string): string {
+  if (!url || !url.includes('res.cloudinary.com')) return url
+  return url.replace('/upload/', '/upload/w_200,h_200,c_fill,f_auto,q_auto/')
+}
+
 export default function ProductDetailPage({ product }: Props) {
   const { lang } = useLang()
   const [activeImg, setActiveImg] = useState(0)
@@ -19,6 +25,7 @@ export default function ProductDetailPage({ product }: Props) {
     ? product.descriptionEn
     : product.description
 
+  // Image principale : Cloudinary pour index 0, Airtable pour les suivantes
   const mainImg = activeImg === 0
     ? (product.imageUrl || product.images[0]?.url)
     : (product.images[activeImg]?.url ?? product.images[0]?.url)
@@ -65,23 +72,30 @@ export default function ProductDetailPage({ product }: Props) {
                     {lang === 'fr' ? 'Collection' : 'Collection'}
                   </p>
                   <div className="flex gap-2 flex-wrap">
-                  {product.images.map((img, i) => (
-                    <button
-                      key={img.id}
-                      onClick={() => setActiveImg(i)}
-                      className={`relative w-16 h-16 overflow-hidden border-2 transition-colors ${
-                        activeImg === i ? 'border-or' : 'border-gris-mid hover:border-or/40'
-                      }`}
-                    >
-                      <Image
-                        src={img.thumbnails?.small?.url ?? img.url}
-                        alt={`${product.nom} ${i + 1}`}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    </button>
-                  ))}
+                    {product.images.map((img, i) => {
+                      // Index 0 : utiliser Cloudinary (permanent) — jamais l'URL Airtable
+                      const thumbSrc = i === 0
+                        ? cloudinaryThumb(product.imageUrl) || img.thumbnails?.small?.url || img.url
+                        : img.thumbnails?.small?.url ?? img.url
+
+                      return (
+                        <button
+                          key={img.id}
+                          onClick={() => setActiveImg(i)}
+                          className={`relative w-16 h-16 overflow-hidden border-2 transition-colors ${
+                            activeImg === i ? 'border-or' : 'border-gris-mid hover:border-or/40'
+                          }`}
+                        >
+                          <Image
+                            src={thumbSrc}
+                            alt={`${product.nom} ${i + 1}`}
+                            fill
+                            className="object-cover"
+                            unoptimized
+                          />
+                        </button>
+                      )
+                    })}
                   </div>
                 </div>
               )}

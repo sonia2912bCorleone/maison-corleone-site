@@ -2,10 +2,11 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'v5.airtableusercontent.com' },
-      { protocol: 'https', hostname: 'dl.airtable.com' },
-      { protocol: 'https', hostname: 'attachments.airtableusercontent.com' },
+      // Cloudinary — source vérité permanente
       { protocol: 'https', hostname: 'res.cloudinary.com' },
+      // Airtable — wildcard couvre v3/v4/v5/attachments/etc.
+      { protocol: 'https', hostname: '*.airtableusercontent.com' },
+      { protocol: 'https', hostname: 'dl.airtable.com' },
     ],
   },
   experimental: {
