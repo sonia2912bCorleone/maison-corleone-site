@@ -22,15 +22,15 @@ export default function Navigation({ lang, onLangSwitch }: Props) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAF7F2]/92 backdrop-blur-md border-b border-or/20">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-blanc/95 backdrop-blur-sm border-b-2 border-or/30 shadow-luxury-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="font-cormorant text-xl text-or tracking-[0.25em] uppercase hover:text-or-light transition-colors"
-            >
-              Maison Corleone
+            {/* Logo avec ornement */}
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="w-2.5 h-2.5 border-2 border-or group-hover:bg-or transition-all duration-300 flex-shrink-0" />
+              <span className="font-cormorant text-xl text-or tracking-[0.25em] uppercase group-hover:text-or-light transition-colors">
+                Maison Corleone
+              </span>
             </Link>
 
             {/* Desktop nav */}
@@ -39,7 +39,7 @@ export default function Navigation({ lang, onLangSwitch }: Props) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-xs font-montserrat tracking-widest uppercase text-gris-light hover:text-or transition-colors"
+                  className="relative text-xs font-montserrat tracking-widest uppercase text-gris-light hover:text-or transition-colors after:content-[''] after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-or after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {item.label}
                 </Link>
@@ -71,12 +71,12 @@ export default function Navigation({ lang, onLangSwitch }: Props) {
 
       {/* Slide-out drawer */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-blanc flex flex-col md:hidden shadow-2xl transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 bottom-0 z-50 w-72 bg-blanc flex flex-col md:hidden shadow-luxury-lg border-l-2 border-or/40 transition-transform duration-300 ease-in-out ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Drawer header */}
-        <div className="flex items-center justify-between px-6 h-16 border-b border-gris-mid flex-shrink-0">
+        <div className="flex items-center justify-between px-6 h-16 border-b-2 border-gris-mid flex-shrink-0">
           <span className="font-cormorant text-lg text-or tracking-[0.2em] uppercase">
             Maison Corleone
           </span>

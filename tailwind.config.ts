@@ -24,6 +24,9 @@ const config: Config = {
         'gris-light': '#666666', // texte secondaire
         'footer-bg': '#1A1A1A',  // fond footer
         'footer-text': '#AAAAAA', // texte footer
+        bourgogne: '#5C2D2D',    // accent chaud — richesse
+        bronze: '#8B7355',       // référence matière
+        marbre: '#F0EBE3',       // background alternatif
       },
       fontFamily: {
         cormorant: ['Cormorant Garamond', 'Georgia', 'serif'],

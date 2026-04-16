@@ -48,7 +48,10 @@ export default function ProductDetailPage({ product }: Props) {
             {/* Images */}
             <div>
               {/* Main image */}
-              <div className="relative aspect-square bg-gris-mid mb-4 overflow-hidden">
+              <div className="relative aspect-square bg-gris-mid mb-4 overflow-hidden shadow-luxury-lg group">
+                {/* Corner accents — révèlent au hover */}
+                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-or opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-or opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                 {mainImg ? (
                   <Image
                     src={mainImg}
@@ -106,43 +109,43 @@ export default function ProductDetailPage({ product }: Props) {
               {/* Category */}
               {product.categories && (
                 <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <span className="text-[9px] text-gris-light font-montserrat tracking-widest uppercase border border-gris-mid px-2 py-0.5">
+                  <span className="text-[9px] text-or/80 font-montserrat tracking-widest uppercase border-2 border-or/30 px-3 py-1 bg-or/5">
                     {product.categories}
                   </span>
                 </div>
               )}
 
               {/* Reference */}
-              <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-2">
-                {t(lang, 'product_ref')} : {product.reference}
+              <p className="text-[10px] text-gris-light font-montserrat tracking-[0.3em] uppercase mb-2">
+                {t(lang, 'product_ref')} : <span className="text-or">{product.reference}</span>
               </p>
 
               {/* Name */}
-              <h1 className="font-cormorant text-4xl sm:text-5xl text-texte mb-4 leading-tight">
+              <h1 className="font-cormorant text-5xl sm:text-6xl text-texte mb-4 leading-tight">
                 {product.nom}
               </h1>
 
-              {/* Divider */}
-              <div className="w-10 h-px bg-or mb-6" />
+              {/* Divider gradient */}
+              <div className="w-16 h-px bg-gradient-to-r from-or to-or-light mb-6" />
 
               {/* Description */}
               {desc && (
-                <p className="text-gris-light font-montserrat text-sm leading-relaxed mb-8">
+                <p className="text-gris-light font-montserrat text-sm leading-relaxed mb-8 max-w-md">
                   {desc}
                 </p>
               )}
 
-              {/* Price */}
-              <div className="border border-gris-mid p-4 mb-6">
-                <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-1">
+              {/* Price — prestige box */}
+              <div className="border-2 border-or p-5 mb-6 bg-or-pale/5 shadow-luxury-sm">
+                <p className="text-[10px] text-gris-light font-montserrat tracking-[0.3em] uppercase mb-2">
                   {t(lang, 'product_price')}
                 </p>
                 {product.prix ? (
-                  <p className="font-cormorant text-3xl text-or">
-                    {product.prix.toLocaleString('fr-FR')} {t(lang, 'product_price_unit')}
+                  <p className="font-cormorant text-4xl text-or">
+                    {product.prix.toLocaleString('fr-FR')} <span className="text-xl tracking-wider">{t(lang, 'product_price_unit')}</span>
                   </p>
                 ) : (
-                  <p className="font-montserrat text-sm text-texte">
+                  <p className="font-montserrat text-sm text-texte italic">
                     {lang === 'fr' ? 'Prix sur demande' : 'Price on request'}
                   </p>
                 )}
@@ -151,14 +154,14 @@ export default function ProductDetailPage({ product }: Props) {
               {/* CTA — desktop only (mobile has fixed bottom bar) */}
               <button
                 onClick={() => setShowDevis(!showDevis)}
-                className="hidden md:block w-full bg-or text-white py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light transition-colors mb-6"
+                className="hidden md:block w-full bg-or text-white py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or-light shadow-luxury-sm hover:shadow-luxury-md transition-all duration-300 mb-6"
               >
                 {t(lang, 'product_devis')}
               </button>
 
               {/* Devis form */}
               {showDevis && (
-                <div className="mb-6">
+                <div className="mb-6 border-2 border-gris-mid p-5 bg-ivoire">
                   <DevisForm
                     lang={lang}
                     productRef={product.reference}
@@ -169,11 +172,11 @@ export default function ProductDetailPage({ product }: Props) {
 
               {/* Details */}
               {product.materiaux && (
-                <div className="border border-gris-mid p-4 mt-4">
-                  <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-1">
-                    {lang === 'fr' ? 'Matériaux' : 'Materials'}
+                <div className="border-2 border-gris-mid p-5 mt-4 bg-gris/30">
+                  <p className="text-[10px] text-gris-light font-montserrat tracking-[0.3em] uppercase mb-2">
+                    {lang === 'fr' ? 'Matériaux & Finitions' : 'Materials & Finishes'}
                   </p>
-                  <p className="text-texte font-montserrat text-sm">{product.materiaux}</p>
+                  <p className="text-texte font-montserrat text-sm leading-relaxed">{product.materiaux}</p>
                 </div>
               )}
             </div>
@@ -182,7 +185,7 @@ export default function ProductDetailPage({ product }: Props) {
       </div>
 
       {/* Fixed bottom CTA — mobile only */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-blanc/95 backdrop-blur-sm border-t border-gris-mid px-4 py-3">
+      <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-noir border-t-2 border-or/40 shadow-luxury-lg px-4 py-3">
         <button
           onClick={() => setShowDevis(!showDevis)}
           className="w-full bg-or text-white py-4 font-montserrat text-xs font-semibold tracking-widest uppercase active:bg-or-light transition-colors"
