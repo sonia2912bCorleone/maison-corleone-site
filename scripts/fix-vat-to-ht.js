@@ -1,19 +1,17 @@
 /**
- * fix-descriptions.js
- * Maison Corleone — Nettoyage champs Description (FR) et "description anglais" (EN)
+ * fix-vat-to-ht.js
+ * Maison Corleone — Remplace TOUTES les variantes "excl. VAT / excl. tax / VAT"
+ * par "HT" dans les champs Description (FR) ET "description anglais" (EN).
  *
- * Actions :
- *  - Supprime caractères parasites : ". _ _ _ ." / "_ _ _" / ". . ." etc.
- *  - EN : "excl. VAT" → "excl. tax", "HT" → "excl. tax"
- *  - FR : "excl. VAT" → "HT", conserve "HT" existant
- *  - PATCH uniquement les produits modifiés
+ * Raison : le script précédent avait mis "excl. tax" dans les descriptions EN.
+ * L'instruction finale est : "HT" partout, sur tous les champs.
  */
 
 const https = require('https');
-const path = require('path');
-const fs = require('fs');
+const path  = require('path');
+const fs    = require('fs');
 
-// ─── Chargement .env ──────────────────────────────────────────────────────────
+// ─── .env ─────────────────────────────────────────────────────────────────────
 const envPath = path.join(__dirname, '..', '.env');
 if (!fs.existsSync(envPath)) { console.error('❌ .env introuvable'); process.exit(1); }
 for (const line of fs.readFileSync(envPath, 'utf-8').split('\n')) {
@@ -28,10 +26,7 @@ for (const line of fs.readFileSync(envPath, 'utf-8').split('\n')) {
 const TOKEN    = process.env.AIRTABLE_TOKEN;
 const BASE_ID  = process.env.AIRTABLE_BASE_ID;
 const TABLE_ID = process.env.AIRTABLE_TABLE_ID;
-
-if (!TOKEN || !BASE_ID || !TABLE_ID) {
-  console.error('❌ Variables Airtable manquantes'); process.exit(1);
-}
+if (!TOKEN || !BASE_ID || !TABLE_ID) { console.error('❌ Variables Airtable manquantes'); process.exit(1); }
 
 // ─── HTTP helpers ─────────────────────────────────────────────────────────────
 function httpGet(url, headers = {}) {
@@ -75,17 +70,14 @@ function airtablePatch(recordId, fields) {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-// ─── Récupère TOUS les produits ───────────────────────────────────────────────
+// ─── Fetch all ────────────────────────────────────────────────────────────────
 async function fetchAll() {
   const records = [];
   let offset = null;
   let page = 1;
   do {
     let url = `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`
-      + `?fields%5B%5D=NOM`
-      + `&fields%5B%5D=Description`
-      + `&fields%5B%5D=description+anglais`
-      + `&pageSize=100`;
+      + `?fields%5B%5D=NOM&fields%5B%5D=Description&fields%5B%5D=description+anglais&pageSize=100`;
     if (offset) url += `&offset=${encodeURIComponent(offset)}`;
     const { status, body } = await httpGet(url, { Authorization: `Bearer ${TOKEN}` });
     if (status !== 200) throw new Error(`GET page ${page} → HTTP ${status}: ${body.toString()}`);
@@ -98,46 +90,21 @@ async function fetchAll() {
   return records;
 }
 
-// ─── Nettoyage caractères parasites ──────────────────────────────────────────
-function removeJunk(text) {
-  if (!text) return text;
-  let t = text;
-  // Supprime séquences de points et tirets bas : ". _ _ _ ." / "_ _ _" / ". . ."
-  t = t.replace(/[._]{2,}/g, ' ');
-  t = t.replace(/\s[._]+\s/g, ' ');
-  // Nettoie espaces multiples
-  t = t.replace(/\s{2,}/g, ' ').trim();
-  return t;
-}
-
-// ─── Nettoyage description EN ─────────────────────────────────────────────────
-function cleanEN(text) {
+// ─── Nettoyage : toutes variantes → HT ───────────────────────────────────────
+function normalize(text) {
   if (!text) return null;
-  let t = removeJunk(text);
+  let t = text;
 
-  // Toutes variantes → HT (standard unique Maison Corleone)
-  t = t.replace(/RETAIL PRICE EXCL\.\s*VAT/gi, 'Prix HT');
+  // Toutes les variantes casse-insensible → HT
   t = t.replace(/RETAIL PRICE EXCL\.\s*TAX/gi, 'Prix HT');
+  t = t.replace(/RETAIL PRICE EXCL\.\s*VAT/gi, 'Prix HT');
+  t = t.replace(/Retail price excl\.\s*tax/gi, 'Prix HT');
   t = t.replace(/Retail price excl\.\s*VAT/gi, 'Prix HT');
   t = t.replace(/Price excl\.\s*tax/gi, 'Prix HT');
-  t = t.replace(/excl\.\s*VAT/gi, 'HT');
+  t = t.replace(/Price excl\.\s*VAT/gi, 'Prix HT');
   t = t.replace(/excl\.\s*tax/gi, 'HT');
+  t = t.replace(/excl\.\s*VAT/gi, 'HT');
   t = t.replace(/\bVAT\b/g, 'HT');
-
-  t = t.replace(/\s{2,}/g, ' ').trim();
-  return t === text ? null : t;
-}
-
-// ─── Nettoyage description FR ─────────────────────────────────────────────────
-function cleanFR(text) {
-  if (!text) return null;
-  let t = removeJunk(text);
-
-  // excl. VAT → HT (le reste reste en français)
-  t = t.replace(/excl\. VAT/gi, 'HT');
-  // RETAIL PRICE EXCL. VAT → Prix HT
-  t = t.replace(/RETAIL PRICE EXCL\. VAT/g, 'Prix HT');
-  t = t.replace(/Retail price excl\. VAT/g, 'Prix HT');
 
   t = t.replace(/\s{2,}/g, ' ').trim();
   return t === text ? null : t;
@@ -146,7 +113,7 @@ function cleanFR(text) {
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 async function main() {
   console.log('═══════════════════════════════════════════════════════════════');
-  console.log('  MAISON CORLEONE — Nettoyage descriptions FR + EN (Airtable)');
+  console.log('  MAISON CORLEONE — Remplacement excl.VAT/excl.tax → HT (Airtable)');
   console.log('═══════════════════════════════════════════════════════════════\n');
 
   const records = await fetchAll();
@@ -156,15 +123,15 @@ async function main() {
 
   for (let i = 0; i < records.length; i++) {
     const r = records[i];
-    const nom = (r.fields.NOM || r.id || '(sans nom)').toString().trim();
+    const nom = (r.fields.NOM || r.id || '').toString().trim();
     const descFR = r.fields['Description'] || '';
     const descEN = r.fields['description anglais'] || '';
 
-    const fixedFR = cleanFR(descFR);
-    const fixedEN = cleanEN(descEN);
+    const fixedFR = normalize(descFR);
+    const fixedEN = normalize(descEN);
 
     if (!fixedFR && !fixedEN) {
-      console.log(`⏭️  [${i+1}/${records.length}] ${nom} → propre, skippé`);
+      console.log(`⏭️  [${i+1}/${records.length}] ${nom} → propre`);
       skipped++;
       continue;
     }
@@ -176,22 +143,18 @@ async function main() {
 
     try {
       await airtablePatch(r.id, fields);
-      console.log(`✅ [${i+1}/${records.length}] ${nom} → corrigé (${changes.join(' + ')})`);
-      if (fixedFR) console.log(`   FR avant : ${descFR.slice(0, 80)}${descFR.length > 80 ? '…' : ''}`);
-      if (fixedFR) console.log(`   FR après : ${fixedFR.slice(0, 80)}${fixedFR.length > 80 ? '…' : ''}`);
-      if (fixedEN) console.log(`   EN avant : ${descEN.slice(0, 80)}${descEN.length > 80 ? '…' : ''}`);
-      if (fixedEN) console.log(`   EN après : ${fixedEN.slice(0, 80)}${fixedEN.length > 80 ? '…' : ''}`);
+      console.log(`✅ [${i+1}/${records.length}] ${nom} → corrigé (${changes.join('+')})`);
       corrected++;
     } catch (err) {
-      console.error(`❌ [${i+1}/${records.length}] ${nom} → ERREUR: ${err.message}`);
+      console.error(`❌ [${i+1}/${records.length}] ${nom} → ${err.message}`);
       errors++;
     }
 
-    await sleep(250); // respect rate limit Airtable (max 5 req/s)
+    await sleep(250);
   }
 
   console.log('\n═══════════════════════════════════════════════════════════════');
-  console.log(`TERMINÉ — ${corrected} corrigés / ${skipped} skippés / ${errors} erreurs`);
+  console.log(`TERMINÉ — ${corrected} corrigés / ${skipped} propres / ${errors} erreurs`);
   console.log('═══════════════════════════════════════════════════════════════\n');
   if (errors > 0) process.exit(1);
 }
