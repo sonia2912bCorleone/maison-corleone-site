@@ -35,13 +35,13 @@ export default function ProductGrid({ initialProducts, categories, lang }: Props
 
   return (
     <div>
-      {/* Filter pills */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      {/* Filter pills — horizontal scroll on mobile */}
+      <div className="flex overflow-x-auto gap-2 mb-10 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap scrollbar-hide">
         {allCategories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`text-[10px] font-montserrat tracking-widest uppercase px-4 py-2 border transition-colors ${
+            className={`flex-none text-[10px] font-montserrat tracking-widest uppercase px-4 py-2 border transition-colors whitespace-nowrap ${
               active === cat
                 ? 'border-or text-or bg-or/10'
                 : 'border-gris-mid text-gris-light hover:border-or/40 hover:text-texte'
@@ -62,7 +62,7 @@ export default function ProductGrid({ initialProducts, categories, lang }: Props
           <p className="text-gris-light font-montserrat text-sm">{t(lang, 'catalogue_no_products')}</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} lang={lang} />
           ))}

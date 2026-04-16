@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useLang } from '@/components/LangProvider'
 import { t } from '@/lib/i18n'
+import QRCodeSection from '@/components/QRCodeSection'
 
 const STATS = [
   { fr: "jusqu'à −87%", en: 'up to −87%', label_fr: 'sous le prix public', label_en: 'below retail price' },
@@ -174,7 +175,7 @@ export default function HomePage() {
             {lang === 'fr' ? 'Discutons de votre projet' : 'Let\'s discuss your project'}
           </h2>
           <div className="w-10 h-px bg-or mx-auto mb-10" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
             <div className="border border-gris-mid p-6">
               <p className="text-[10px] text-gris-light font-montserrat tracking-widest uppercase mb-2">Email</p>
               <a href="mailto:contact@maisoncorleone.com" className="text-texte font-montserrat text-sm hover:text-or transition-colors">
@@ -189,6 +190,7 @@ export default function HomePage() {
                 www.maisoncorleone.com
               </a>
             </div>
+            <QRCodeSection lang={lang} />
           </div>
           <div className="mt-8">
             <Link

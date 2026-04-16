@@ -1,0 +1,25 @@
+{
+  "name": "Maison Corleone",
+  "short_name": "Corleone",
+  "description": "Mobilier de prestige, sourcing direct ateliers. Jusqu'à −87% sous le prix public.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#8B6914",
+  "orientation": "portrait",
+  "categories": ["shopping", "business"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
