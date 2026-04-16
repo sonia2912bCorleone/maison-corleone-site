@@ -25,6 +25,9 @@ export interface Product {
   images: AirtableImage[] // Pièces jointes Airtable (fallback / miniatures)
   categories: string
   materiaux?: string
+  imageLifestyle1: string | null
+  imageLifestyle2: string | null
+  imageLifestyle3: string | null
 }
 
 interface AirtableRecord {
@@ -41,6 +44,9 @@ interface AirtableRecord {
     Categories?: string
     CATEGORIES?: string
     materiaux?: string
+    ImageLifestyle1?: string
+    ImageLifestyle2?: string
+    ImageLifestyle3?: string
   }
 }
 
@@ -92,6 +98,9 @@ function recordToProduct(record: AirtableRecord): Product {
     images,
     categories,
     materiaux: f.materiaux as string | undefined,
+    imageLifestyle1: (f.ImageLifestyle1 as string | undefined) || null,
+    imageLifestyle2: (f.ImageLifestyle2 as string | undefined) || null,
+    imageLifestyle3: (f.ImageLifestyle3 as string | undefined) || null,
   }
 }
 
