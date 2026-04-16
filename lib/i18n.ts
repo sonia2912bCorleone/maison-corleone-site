@@ -90,8 +90,8 @@ export const translations = {
 
     // Product
     product_ref: 'Reference',
-    product_price: 'Retail price excl. VAT',
-    product_price_unit: '€ excl. VAT',
+    product_price: 'Retail price HT',
+    product_price_unit: '€ HT',
     product_devis: 'Request a quote',
     product_back: '← Back to catalogue',
     product_details: 'Product details',
