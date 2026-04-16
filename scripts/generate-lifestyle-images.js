@@ -149,7 +149,6 @@ async function generateImage(prompt) {
       prompt,
       image_size: 'landscape_4_3',
       num_inference_steps: 28,
-      guidance_scale: 3.5,
       num_images: 1,
       safety_tolerance: '2',
       output_format: 'jpeg',
@@ -157,11 +156,19 @@ async function generateImage(prompt) {
     logs: false,
   });
 
-  if (!result?.images?.[0]?.url) {
+  // Le client fal.ai peut wrapper la réponse dans .data ou retourner directement
+  const output = result?.data ?? result;
+  const imageUrl = output?.images?.[0]?.url
+    ?? output?.image?.url
+    ?? output?.url;
+
+  if (!imageUrl) {
+    // Log la structure réelle pour diagnostic
+    console.error('\n  [DEBUG fal.ai result]:', JSON.stringify(result, null, 2).substring(0, 500));
     throw new Error('Aucune image retournée par fal.ai');
   }
 
-  return result.images[0].url;
+  return imageUrl;
 }
 
 // ─── CLOUDINARY — UPLOADER UNE IMAGE ─────────────────────────
