@@ -22,13 +22,13 @@ export default function Navigation({ lang, onLangSwitch }: Props) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-blanc/95 backdrop-blur-sm border-b border-gris-mid">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FAF7F2]/92 backdrop-blur-md border-b border-or/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link
               href="/"
-              className="font-cormorant text-xl text-or tracking-[0.2em] uppercase hover:text-or-light transition-colors"
+              className="font-cormorant text-xl text-or tracking-[0.25em] uppercase hover:text-or-light transition-colors"
             >
               Maison Corleone
             </Link>

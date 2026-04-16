@@ -9,18 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        blanc: '#FAFAF8',       // fond principal
-        texte: '#1A1A1A',       // texte courant
-        noir: '#0A0A0A',        // usage interne sombre
-        or: '#8B6914',          // or foncé — titres, CTA, accents
-        'or-light': '#C9A84C',  // or clair — hover
-        'or-pale': '#E8C97A',   // or très clair — fonds subtils
-        carte: '#FFFFFF',       // fond cards produits
-        'carte-border': '#E8E3DC', // bordure cards
-        gris: '#F0EDE8',        // fond sections secondaires
-        'gris-mid': '#E0DDD8',  // bordures, squelettes
-        'gris-light': '#666666',// texte secondaire
-        'footer-bg': '#1A1A1A', // fond footer
+        blanc: '#FAF7F2',        // ivoire chaud — fond principal
+        texte: '#1A1A1A',        // texte courant
+        noir: '#0A0A0A',         // usage interne sombre
+        or: '#A67C3C',           // or champagne brossé — titres, CTA, accents
+        'or-light': '#C9A96E',   // or chaud — hover
+        'or-pale': '#EDD9A3',    // reflet nacré — fonds subtils
+        'or-deep': '#8B6508',    // or profond — accents forts
+        ivoire: '#F5EFE3',       // fond sections alternées
+        carte: '#FEFCF8',        // ivoire très pâle — fond cards
+        'carte-border': '#E2D9CC', // bordure cards chaude
+        gris: '#EDE8E0',         // warm greige — sections secondaires
+        'gris-mid': '#D9D0C4',   // bordures, squelettes
+        'gris-light': '#666666', // texte secondaire
+        'footer-bg': '#1A1A1A',  // fond footer
         'footer-text': '#AAAAAA', // texte footer
       },
       fontFamily: {

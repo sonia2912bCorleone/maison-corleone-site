@@ -31,7 +31,7 @@ function CatalogueContent({ initialProducts, categories }: Props) {
   return (
     <div className="min-h-screen bg-blanc">
       {/* Header */}
-      <div className="border-b border-gris-mid bg-gris py-16 px-4">
+      <div className="border-b border-or/15 bg-ivoire py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-4">
             {lang === 'fr' ? 'Collection complète' : 'Full collection'}
@@ -66,7 +66,7 @@ function CatalogueContent({ initialProducts, categories }: Props) {
 function CatalogueSkeleton() {
   return (
     <div className="min-h-screen bg-blanc">
-      <div className="border-b border-gris-mid bg-gris py-16 px-4">
+      <div className="border-b border-or/15 bg-ivoire py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="h-3 w-32 bg-gris-mid rounded mb-4" />
           <div className="h-12 w-64 bg-gris-mid rounded mb-4" />

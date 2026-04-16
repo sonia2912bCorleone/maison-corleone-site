@@ -18,18 +18,21 @@ export default function ProductCard({ product, lang }: Props) {
 
   return (
     <Link href={`/produit/${product.slug}`} className="group block">
-      <div className="bg-carte border border-carte-border shadow-sm hover:shadow-md hover:border-or/40 transition-all duration-300 overflow-hidden">
+      <div className="bg-carte border border-carte-border shadow-sm hover:shadow-[0_8px_32px_rgba(166,124,60,0.12)] hover:border-or/40 transition-all duration-300 overflow-hidden">
         {/* Image */}
-        <div className="relative aspect-[4/3] overflow-hidden bg-gris-mid">
+        <div className="relative aspect-[3/4] overflow-hidden bg-gris-mid">
           {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt={nom}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              unoptimized
-            />
+            <>
+              <Image
+                src={imageUrl}
+                alt={nom}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </>
           ) : (
             <div className="flex items-center justify-center h-full">
               <span className="text-gris-light text-xs font-montserrat">No image</span>

@@ -32,17 +32,19 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-blanc">
+      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#FAF7F2]">
         {/* Background grid ornament */}
         <div
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: 'linear-gradient(#8B6914 1px, transparent 1px), linear-gradient(90deg, #8B6914 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(#A67C3C 1px, transparent 1px), linear-gradient(90deg, #A67C3C 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
-        {/* Radial glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-or/5 rounded-full blur-3xl" />
+        {/* Radial glow centre */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-or/8 rounded-full blur-3xl" />
+        {/* Radial glow bas-droite */}
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-or-pale/20 rounded-full blur-3xl" />
 
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           {/* Eyebrow */}
@@ -63,9 +65,9 @@ export default function HomePage() {
 
           {/* Divider */}
           <div className="flex items-center gap-4 justify-center mb-8">
-            <div className="h-px bg-or/40 w-16" />
-            <div className="w-1.5 h-1.5 bg-or rotate-45" />
-            <div className="h-px bg-or/40 w-16" />
+            <div className="h-px bg-or/60 w-16" />
+            <div className="w-2 h-2 bg-or rotate-45" />
+            <div className="h-px bg-or/60 w-16" />
           </div>
 
           {/* Subtitle */}
@@ -130,7 +132,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {POSITIONING.map((item, i) => (
-              <div key={i} className="border border-gris-mid p-8 hover:border-or/40 transition-colors">
+              <div key={i} className="border border-or/15 bg-[#FEFCF8] p-8 hover:bg-ivoire hover:border-or/30 transition-colors">
                 <div className="w-6 h-px bg-or mb-6" />
                 <h3 className="font-cormorant text-2xl text-texte mb-4">
                   {lang === 'fr' ? item.fr.title : item.en.title}
@@ -145,7 +147,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA CATALOGUE */}
-      <section className="py-24 px-4 bg-gris border-y border-gris-mid">
+      <section className="py-24 px-4 bg-ivoire border-y border-or/15">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-4">
             {lang === 'fr' ? '500+ références disponibles' : '500+ references available'}
