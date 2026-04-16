@@ -58,9 +58,13 @@ export default function ProductDetailPage({ product }: Props) {
               )}
             </div>
 
-            {/* Thumbnails */}
+            {/* Thumbnails — Collection */}
             {product.images.length > 1 && (
-              <div className="flex gap-2 flex-wrap">
+              <div>
+                <p className="text-[10px] text-gris-light font-montserrat tracking-[0.25em] uppercase mb-3">
+                  {lang === 'fr' ? 'Collection' : 'Collection'}
+                </p>
+                <div className="flex gap-2 flex-wrap">
                 {product.images.map((img, i) => (
                   <button
                     key={img.id}
@@ -78,6 +82,7 @@ export default function ProductDetailPage({ product }: Props) {
                     />
                   </button>
                 ))}
+                </div>
               </div>
             )}
           </div>
@@ -159,31 +164,6 @@ export default function ProductDetailPage({ product }: Props) {
         </div>
       </div>
 
-      {/* Section Mises en situation */}
-      {(product.imageLifestyle1 || product.imageLifestyle2 || product.imageLifestyle3) && (
-        <section className="max-w-7xl mx-auto mt-16 pt-12 border-t border-gris-mid">
-          <p className="text-[10px] text-or font-montserrat tracking-[0.35em] uppercase mb-3">
-            Inspirations
-          </p>
-          <h2 className="font-cormorant text-3xl sm:text-4xl text-texte mb-10">
-            Mises en situation
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[product.imageLifestyle1, product.imageLifestyle2, product.imageLifestyle3]
-              .filter(Boolean)
-              .map((url, index) => (
-                <div key={index} className="aspect-[4/3] overflow-hidden bg-gris-mid border border-carte-border">
-                  <img
-                    src={url as string}
-                    alt={`${product.nom} — mise en situation ${index + 1}`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              ))
-            }
-          </div>
-        </section>
-      )}
     </div>
   )
 }
