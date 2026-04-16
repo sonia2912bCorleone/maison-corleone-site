@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLang } from '@/components/LangProvider'
 import { t } from '@/lib/i18n'
 import QRCodeSection from '@/components/QRCodeSection'
@@ -32,20 +33,21 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#FAF7F2]">
-        {/* Background grid ornament */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: 'linear-gradient(#A67C3C 1px, transparent 1px), linear-gradient(90deg, #A67C3C 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
+      <section className="h-[60vh] md:h-[90vh] flex items-center justify-center relative overflow-hidden">
+        {/* Image hero pleine largeur */}
+        <Image
+          src="https://res.cloudinary.com/dmgqvysg9/image/upload/ar_4:3,c_auto/nanobanana_pro_1_lw0uhj.png"
+          alt="Maison Corleone — Mobilier de prestige"
+          fill
+          className="object-cover object-center"
+          priority
+          unoptimized
         />
-        {/* Radial glow centre */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-or/8 rounded-full blur-3xl" />
-        {/* Radial glow bas-droite */}
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-or-pale/20 rounded-full blur-3xl" />
 
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+
+        {/* Contenu centré */}
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           {/* Eyebrow */}
           <p className="text-or text-[10px] font-montserrat tracking-[0.35em] uppercase mb-8">
@@ -53,13 +55,13 @@ export default function HomePage() {
           </p>
 
           {/* Main headline */}
-          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-texte leading-tight mb-2">
+          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-white leading-tight mb-2">
             {t(lang, 'hero_tagline')}
           </h1>
           <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-or leading-tight mb-2">
             {t(lang, 'hero_tagline2')}
           </h1>
-          <h1 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl text-texte leading-tight mb-8">
+          <h1 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-8">
             {t(lang, 'hero_tagline3')}
           </h1>
 
@@ -71,7 +73,7 @@ export default function HomePage() {
           </div>
 
           {/* Subtitle */}
-          <p className="text-gris-light font-montserrat text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-12">
+          <p className="text-white/80 font-montserrat text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-12">
             {t(lang, 'hero_subtitle')}
           </p>
 
@@ -85,7 +87,7 @@ export default function HomePage() {
             </Link>
             <Link
               href="/#contact"
-              className="inline-block border border-or/60 text-or px-10 py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-or/10 transition-colors"
+              className="inline-block border border-white/60 text-white px-10 py-4 font-montserrat text-xs font-semibold tracking-widest uppercase hover:bg-white/10 transition-colors"
             >
               {t(lang, 'hero_cta2')}
             </Link>
@@ -94,8 +96,8 @@ export default function HomePage() {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <div className="w-px h-8 bg-or/40" />
-          <div className="w-4 h-px bg-or/40" />
+          <div className="w-px h-8 bg-white/40" />
+          <div className="w-4 h-px bg-white/40" />
         </div>
       </section>
 
