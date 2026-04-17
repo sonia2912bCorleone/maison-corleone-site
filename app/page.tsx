@@ -33,8 +33,8 @@ export default function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="h-[60vh] md:h-[90vh] flex items-center justify-center relative overflow-hidden">
-        {/* Image hero pleine largeur */}
+      <section className="h-[60vh] md:h-[90vh] flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: '#FAF7F2' }}>
+        {/* Image hero — fondue sur fond ivoire */}
         <Image
           src="https://res.cloudinary.com/dmgqvysg9/image/upload/ar_4:3,c_auto/nanobanana_pro_1_lw0uhj.png"
           alt="Maison Corleone — Mobilier de prestige"
@@ -42,10 +42,16 @@ export default function HomePage() {
           className="object-cover object-center"
           priority
           unoptimized
+          style={{ opacity: 0.55 }}
         />
 
-        {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent" />
+        {/* Overlay gradient centré sur le texte */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.70) 60%, rgba(0,0,0,0.45) 100%)',
+          }}
+        />
 
         {/* Contenu centré */}
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
@@ -55,10 +61,13 @@ export default function HomePage() {
           </p>
 
           {/* Main headline */}
-          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-white leading-tight mb-2">
+          <h1
+            className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-white leading-tight mb-2"
+            style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}
+          >
             {t(lang, 'hero_tagline')}
           </h1>
-          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl text-or leading-tight mb-2">
+          <h1 className="font-cormorant text-5xl sm:text-7xl lg:text-8xl leading-tight mb-2" style={{ color: '#A67C3C' }}>
             {t(lang, 'hero_tagline2')}
           </h1>
           <h1 className="font-cormorant text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-8">
